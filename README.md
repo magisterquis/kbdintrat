@@ -81,3 +81,7 @@ The implant will check the server's key fingerprint against the one specified
 on the command line.  There is an example key, [`id_rsa`](./id_rsa) included
 with the source.  Its fingerprint is the default used by the implant to
 authenicate the server.  Please use your own.
+
+The fingerprint is checked by the client.  It is the same as the fingerprint
+printed with OpenSSH's `VisualHostKey` option.  Fingerprint checking can be
+skipped with `-fingerprint ignore`.

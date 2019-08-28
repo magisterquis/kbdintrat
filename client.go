@@ -153,7 +153,7 @@ func connect(addr string, conf *ssh.ClientConfig, timeout time.Duration) {
 	}
 
 	if nil != err {
-		log.Printf("Error %T: %v", err, err)
+		log.Printf("Error: %v", err)
 	}
 }
 

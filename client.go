@@ -42,7 +42,8 @@ func DoClient(
 ) {
 	/* Roll a client config, which does the real work */
 	conf := &ssh.ClientConfig{
-		User: id,
+		Config: ssh.Config{KeyExchanges: KeyExchanges},
+		User:   id,
 		Auth: []ssh.AuthMethod{
 			/* We should never key anything but
 			keyboard-interactive auth unless we're being MitM'd */

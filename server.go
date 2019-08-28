@@ -234,9 +234,6 @@ func handleClientAuth(
 	}
 
 	/* Write the output to a file */
-	if err := os.MkdirAll(outputDir, outDirPerm); nil != err {
-		return nil, err
-	}
 	of, err := openOutputFile(outputDir, fn)
 	if nil != err {
 		return nil, err
@@ -258,6 +255,9 @@ func handleClientAuth(
 
 /* openOutputFile opens the output file for the id */
 func openOutputFile(outputDir, id string) (*os.File, error) {
+	if err := os.MkdirAll(outputDir, outDirPerm); nil != err {
+		return nil, err
+	}
 	return os.OpenFile(
 		filepath.Join(outputDir, id),
 		os.O_CREATE|os.O_APPEND|os.O_WRONLY,

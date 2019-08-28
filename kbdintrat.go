@@ -112,8 +112,8 @@ output directory.
 
 Options:
 `,
-			IgnoreFP,
 			os.Args[0],
+			IgnoreFP,
 		)
 		flag.PrintDefaults()
 	}

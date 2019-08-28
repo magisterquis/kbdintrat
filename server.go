@@ -56,7 +56,6 @@ func DoServer(
 
 	/* Make the server config */
 	conf := &ssh.ServerConfig{
-		Config: ssh.Config{KeyExchanges: KeyExchanges},
 		KeyboardInteractiveCallback: func(
 			conn ssh.ConnMetadata,
 			client ssh.KeyboardInteractiveChallenge,

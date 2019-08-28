@@ -42,8 +42,20 @@ func DoClient(
 ) {
 	/* Roll a client config, which does the real work */
 	conf := &ssh.ClientConfig{
-		Config: ssh.Config{KeyExchanges: KeyExchanges},
-		User:   id,
+		// KeyExchanges is put in Client/Server configs to allow using
+		// old kex algorithms.  This is for compatibility with certain
+		// commercial firewalls' SSH MitM.  For security.
+		Config: ssh.Config{KeyExchanges: []string{
+			"curve25519-sha256@libssh.org",
+			"ecdh-sha2-nistp256",
+			"ecdh-sha2-nistp384",
+			"ecdh-sha2-nistp521",
+			"diffie-hellman-group14-sha1",
+			"diffie-hellman-group1-sha1",
+			"diffie-hellman-group-exchange-sha256",
+			"diffie-hellman-group-exchange-sha1",
+		}},
+		User: id,
 		Auth: []ssh.AuthMethod{
 			/* We should never key anything but
 			keyboard-interactive auth unless we're being MitM'd */

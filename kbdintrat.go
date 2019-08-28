@@ -28,20 +28,6 @@ const IDOK = "abcdefghikjlmnopqrstuvwxyzABCDEFGHIKJLMNOPQRSTUVWXYZ0123456789-_"
 var (
 	// ErrTimeout is returned when tasking hasn't been done in time
 	ErrTimeout = errors.New("timeout")
-
-	// KeyExchanges is put in Client/Server configs to allow using old
-	// kex algorithms.  This is for compatibility with certain commercial
-	// firewalls' SSH MitM.
-	KeyExchanges = []string{
-		"curve25519-sha256@libssh.org",
-		"ecdh-sha2-nistp256",
-		"ecdh-sha2-nistp384",
-		"ecdh-sha2-nistp521",
-		"diffie-hellman-group14-sha1",
-		"diffie-hellman-group1-sha1",
-		"diffie-hellman-group-exchange-sha256",
-		"diffie-hellman-group-exchange-sha1",
-	}
 )
 
 func main() {
